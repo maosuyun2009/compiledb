@@ -201,6 +201,7 @@ class CommandProcessor(bashlex.ast.nodevisitor):
                 preprocessed[start:end] = out.strip()
             preprocessed = ''.join(preprocessed)
 
+        preprocessed = preprocessed.replace('\\', '/')
         trees = bashlex.parser.parse(preprocessed)
         processor = CommandProcessor(preprocessed, wd)
         for tree in trees:
